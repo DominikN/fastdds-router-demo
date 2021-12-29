@@ -33,8 +33,8 @@ jobs:
       with:
         context: ./docker_image
         file: ./docker_image/Dockerfile
-        platforms: linux/arm64, linux/amd64
+        platforms: linux/amd64
         push: true
-        tags: ghcr.io/dominikn/ros-galactic-fastdds:v2.4.0
-        cache-from: type=registry,ref=ghcr.io/dominikn/ros-galactic-fastdds:v2.4.0
+        tags: ghcr.io/dominikn/fastdds-router
+        cache-from: type=registry,ref=ghcr.io/dominikn/fastdds-router
         cache-to: type=inline

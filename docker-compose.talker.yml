@@ -9,19 +9,29 @@ services:
     # build: ./docker_image
     image: ghcr.io/dominikn/ros-galactic-fastdds:v2.4.0
     restart: unless-stopped
-    network_mode: service:husarnet-talker
     environment:
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-      - FASTRTPS_DEFAULT_PROFILES_FILE=/fastdds_client.xml
     command:
       - bash
       - -c
       - |
           source /fastdds_overlay/install/setup.bash
-          /wait_for_discovery_server.sh
           ros2 run demo_nodes_cpp talker
 
-  husarnet-talker:
+  dds-router:
+    build: ./docker_image
+    restart: unless-stopped
+    network_mode: service:husarnet
+    volumes:
+      - ./dds-router-config.yaml:/config.yaml
+    command:
+      - bash
+      - -c
+      - |
+          source /DDS-Router/install/setup.bash
+          /DDS-Router/install/ddsrouter/bin/ddsrouter -c /config.yaml -r 2
+
+  husarnet:
     image: husarnet/husarnet
     restart: unless-stopped
     volumes:
@@ -36,16 +46,3 @@ services:
       - HOSTNAME=talker
     env_file:
       - ./.env  # create .env file in the same folder
-
-  internal-listener:
-    # build: ./docker_image
-    image: ghcr.io/dominikn/ros-galactic-fastdds:v2.4.0
-    restart: unless-stopped
-    environment:
-      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-    command:
-      - bash
-      - -c
-      - |
-          source /fastdds_overlay/install/setup.bash
-          ros2 run demo_nodes_cpp listener

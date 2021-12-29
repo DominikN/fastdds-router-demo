@@ -1,0 +1,49 @@
+########################################################
+# Husarion Use Case
+########################################################
+
+# List of topics that the DDS Router will forward.
+# Any topic not included in this list will be blocked by the DDS Router.
+# This list can be updated at run time.
+allowlist:
+  [
+    {
+      name: "rt/chatter", 
+      type: "std_msgs::msg::dds_::String_"
+    },
+    {
+      name: "HelloWorldTopic", 
+      type: "HelloWorld"
+    }
+  ]
+
+# Participant responsible for subscribing and publishing in the internal topics of the robot.
+# This participant implements the Simple discovery protocol.
+IntraRobotParticipant:
+  type: local
+  domain: 0
+
+# Participant that performs the communications between the robots.
+# This participant implements the Discovery Server discovery mechanism.
+# Since this participant is part of a Discovery Server network, its id must be unique throughout the network.
+InterRobotParticipant:
+  type: local-discovery-server
+  id: 1
+  ros-discovery-server: true 
+  # Network address of the DS-Server to which the robots connect.
+  connection-addresses:
+  [
+    {
+      # id: 0, # This is equivalent to: guid: "44.53.00.5f.45.50.52.4f.53.49.4d.41"
+      guid: "44.49.53.43.53.45.52.56.45.52.5f.31",
+      addresses:
+      [
+        {
+          ip: "fc94:c8b0:5e57:a49:ecd9:39dd:a36:b8c", 
+          port: 11811,
+          transport: "udp",
+          ip-version: "v6"
+        },
+      ]
+    },
+  ]

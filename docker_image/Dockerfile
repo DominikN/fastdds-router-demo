@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
     # Fast DDS dependencies
     libssl-dev \
     libasio-dev \
+    cmake g++ pip wget git \
+    libyaml-cpp-dev \
     # Demo packages
     ros-${ROS_DISTRO}-demo-nodes-cpp
 
@@ -36,9 +38,13 @@ RUN source /opt/ros/galactic/setup.bash && \
     rm -rf log/ build/ src/ colcon.meta fastdds.repos && \
     rm -rf /var/lib/apt/lists/*
 
-COPY fastdds_server.xml /
-COPY fastdds_client.xml /
-COPY fastdds_client2.xml /
+WORKDIR /DDS-Router
+
+RUN mkdir src && \
+    wget https://raw.githubusercontent.com/eProsima/DDS-Router/main/ddsrouter.repos && \
+    vcs import src < ddsrouter.repos && \
+    colcon build
+
 COPY wait_for_discovery_server.sh /
 
 RUN chmod +x /wait_for_discovery_server.sh
