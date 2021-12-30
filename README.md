@@ -38,3 +38,7 @@ That Docker Compose deployment starts also a basic `listener` node.
 ```bash
 docker-compose -f docker-compose.talker.yml up
 ```
+
+## Testing DDS Router config (`yaml` file)
+
+The file `./dds-router-config.yml` is attached as a volume to a `dds-router` service. The DDS Router runs with a configuration reload every 2 seconds, so updating the provided config "on the fly" should work. [Read more](https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/user_interface.html#reload-topics)

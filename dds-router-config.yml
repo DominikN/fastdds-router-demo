@@ -39,7 +39,7 @@ InterRobotParticipant:
       addresses:
       [
         {
-          ip: "fc94:c8b0:5e57:a49:ecd9:39dd:a36:b8c", 
+          ip: "fc94:fb42:3c54:5007:dbd4:8981:1755:5be7", 
           port: 11811,
           transport: "udp",
           ip-version: "v6"

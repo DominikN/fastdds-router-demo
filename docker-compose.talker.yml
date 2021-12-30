@@ -6,9 +6,7 @@ version: '2.3'
 services:
 
   talker:
-    # build: ./docker_image
     image: ghcr.io/dominikn/ros-galactic-fastdds:v2.4.0
-    restart: unless-stopped
     environment:
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
     command:
@@ -19,21 +17,20 @@ services:
           ros2 run demo_nodes_cpp talker
 
   dds-router:
-    build: ./docker_image
-    restart: unless-stopped
-    network_mode: service:husarnet
+    # build: ./docker_image
+    image: ghcr.io/dominikn/fastdds-router
+    network_mode: service:husarnet-dds-router
     volumes:
-      - ./dds-router-config.yaml:/config.yaml
+      - ./dds-router-config.yml:/config.yml
     command:
       - bash
       - -c
       - |
           source /DDS-Router/install/setup.bash
-          /DDS-Router/install/ddsrouter/bin/ddsrouter -c /config.yaml -r 2
+          /DDS-Router/install/ddsrouter/bin/ddsrouter -c /config.yml -r 2
 
-  husarnet:
+  husarnet-dds-router:
     image: husarnet/husarnet
-    restart: unless-stopped
     volumes:
       - /var/lib/husarnet  # This will persist your Husarnet Client keys, thus IP of the container will be stable/the same between (re)boots
     sysctls:
