@@ -38,13 +38,6 @@ RUN source /opt/ros/galactic/setup.bash && \
     rm -rf log/ build/ src/ colcon.meta fastdds.repos && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /DDS-Router
-
-RUN mkdir src && \
-    wget https://raw.githubusercontent.com/eProsima/DDS-Router/main/ddsrouter.repos && \
-    vcs import src < ddsrouter.repos && \
-    colcon build
-
 COPY wait_for_discovery_server.sh /
 
 RUN chmod +x /wait_for_discovery_server.sh

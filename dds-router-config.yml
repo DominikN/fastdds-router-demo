@@ -29,7 +29,7 @@ IntraRobotParticipant:
 InterRobotParticipant:
   type: local-discovery-server
   id: 1
-  ros-discovery-server: true 
+  # ros-discovery-server: true 
   # Network address of the DS-Server to which the robots connect.
   connection-addresses:
   [
@@ -39,10 +39,8 @@ InterRobotParticipant:
       addresses:
       [
         {
-          ip: "fc94:fb42:3c54:5007:dbd4:8981:1755:5be7", 
+          ip: "fc94:7b64:3fc:97a4:90b8:2ff5:46cf:c471", 
           port: 11811,
-          transport: "udp",
-          ip-version: "v6"
         },
       ]
     },

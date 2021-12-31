@@ -17,8 +17,8 @@ services:
           ros2 run demo_nodes_cpp talker
 
   dds-router:
-    # build: ./docker_image
-    image: ghcr.io/dominikn/fastdds-router
+    build: ./docker_image
+    # image: ghcr.io/dominikn/fastdds-router
     network_mode: service:husarnet-dds-router
     volumes:
       - ./dds-router-config.yml:/config.yml
@@ -26,8 +26,9 @@ services:
       - bash
       - -c
       - |
-          source /DDS-Router/install/setup.bash
-          /DDS-Router/install/ddsrouter/bin/ddsrouter -c /config.yml -r 2
+          source /fastdds_overlay/install/setup.bash
+          /wait_for_discovery_server.sh
+          /fastdds_overlay/install/ddsrouter/bin/ddsrouter -c /config.yml -r 2
 
   husarnet-dds-router:
     image: husarnet/husarnet
