@@ -17,7 +17,6 @@ services:
           ros2 run demo_nodes_cpp talker
 
   dds-router-talker:
-    # build: ./docker_image
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
     network_mode: service:husarnet-talker
     volumes:

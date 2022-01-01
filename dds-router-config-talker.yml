@@ -6,16 +6,11 @@
 # Any topic not included in this list will be blocked by the DDS Router.
 # This list can be updated at run time.
 allowlist:
-  [
-    {
-      name: "rt/chatter", 
-      type: "std_msgs::msg::dds_::String_"
-    },
-    {
-      name: "HelloWorldTopic", 
-      type: "HelloWorld"
-    }
-  ]
+  - name: "rt/chatter"
+    type: "std_msgs::msg::dds_::String_"
+  
+  - name: "HelloWorldTopic"
+    type: "HelloWorld"
 
 IntraRobotParticipant:
   type: local
@@ -23,22 +18,14 @@ IntraRobotParticipant:
 
 InterRobotParticipant:
   type: local-discovery-server
-  id: 300
+  id: 301
   # Network address of the DS-Server to which the robots connect.
   connection-addresses:
-  [
-    {
-      guid: "44.53.01.5f.45.50.52.4f.53.49.4d.41",
+    - guid: "44.53.01.5f.45.50.52.4f.53.49.4d.41"
       addresses:
-      [
-        {
-          ip: "fc94:0cbb:c738:2b5e:dda6:1397:20cd:49f4", 
-          port: 11811,
+        - ip: "fc94:0cbb:c738:2b5e:dda6:1397:20cd:49f4"
+          port: 11811
           transport: "udp"
-        },
-      ]
-    },
-  ]
 
 
 
