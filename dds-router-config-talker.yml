@@ -1,0 +1,44 @@
+########################################################
+# Husarion Use Case
+########################################################
+
+# List of topics that the DDS Router will forward.
+# Any topic not included in this list will be blocked by the DDS Router.
+# This list can be updated at run time.
+allowlist:
+  [
+    {
+      name: "rt/chatter", 
+      type: "std_msgs::msg::dds_::String_"
+    },
+    {
+      name: "HelloWorldTopic", 
+      type: "HelloWorld"
+    }
+  ]
+
+IntraRobotParticipant:
+  type: local
+  domain: 0
+
+InterRobotParticipant:
+  type: local-discovery-server
+  id: 300
+  # Network address of the DS-Server to which the robots connect.
+  connection-addresses:
+  [
+    {
+      guid: "44.53.01.5f.45.50.52.4f.53.49.4d.41",
+      addresses:
+      [
+        {
+          ip: "fc94:89a0:b972:9f28:db5e:77f5:0bee:a816", 
+          port: 11811,
+          transport: "udp"
+        },
+      ]
+    },
+  ]
+
+
+

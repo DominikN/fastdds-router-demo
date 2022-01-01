@@ -1,11 +1,11 @@
 # TL;DR
-# docker-compose -f docker-compose.talker.yml up
+# docker-compose -f docker-compose.listener.yml up
 
 version: '2.3'
 
 services:
 
-  talker:
+  listener:
     image: ghcr.io/dominikn/ros-galactic-fastdds:v2.4.0
     environment:
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
@@ -14,14 +14,14 @@ services:
       - -c
       - |
           source /fastdds_overlay/install/setup.bash
-          ros2 run demo_nodes_cpp talker
+          ros2 run demo_nodes_cpp listener
 
-  dds-router-talker:
+  dds-router-listener:
     # build: ./docker_image
     image: ghcr.io/dominikn/ros-galactic-fastdds:router
-    network_mode: service:husarnet-talker
+    network_mode: service:husarnet-listener
     volumes:
-      - ./dds-router-config-talker.yml:/config.yml
+      - ./dds-router-config-listener.yml:/config.yml
     command:
       - bash
       - -c
@@ -30,7 +30,7 @@ services:
           /wait_for_discovery_server.sh
           ddsrouter -c /config.yml
 
-  husarnet-talker:
+  husarnet-listener:
     image: husarnet/husarnet
     volumes:
       - /var/lib/husarnet  # This will persist your Husarnet Client keys, thus IP of the container will be stable/the same between (re)boots
@@ -41,6 +41,6 @@ services:
     devices:
       - /dev/net/tun
     environment:
-      - HOSTNAME=talker
+      - HOSTNAME=listener
     env_file:
       - ./.env  # create .env file in the same folder
