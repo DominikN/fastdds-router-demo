@@ -6,7 +6,7 @@ version: '2.3'
 services:
 
   discovery-server:
-    image: ghcr.io/dominikn/ros-galactic-fastdds:v2.4.0
+    image: ghcr.io/dominikn/ros-galactic-fastdds:latest
     network_mode: service:husarnet-ds
     volumes:
       - ./discovery-server-config.xml:/fastdds_server.xml

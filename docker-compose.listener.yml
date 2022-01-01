@@ -6,7 +6,7 @@ version: '2.3'
 services:
 
   listener:
-    image: ghcr.io/dominikn/ros-galactic-fastdds:v2.4.0
+    image: ghcr.io/dominikn/ros-galactic-fastdds:latest
     environment:
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
     command:
@@ -18,7 +18,7 @@ services:
 
   dds-router-listener:
     # build: ./docker_image
-    image: ghcr.io/dominikn/ros-galactic-fastdds:router
+    image: ghcr.io/dominikn/ros-galactic-fastdds:latest
     network_mode: service:husarnet-listener
     volumes:
       - ./dds-router-config-listener.yml:/config.yml
