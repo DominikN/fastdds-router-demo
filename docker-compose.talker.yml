@@ -18,7 +18,7 @@ services:
 
   dds-router:
     build: ./docker_image
-    # image: ghcr.io/dominikn/fastdds-router
+    # image: ghcr.io/dominikn/ros-galactic-fastdds:router
     network_mode: service:husarnet-dds-router
     volumes:
       - ./dds-router-config.yml:/config.yml
