@@ -16,9 +16,12 @@ IntraRobotParticipant:
   type: local
   domain: 0
 
+EchoParticipant:
+  type: echo
+
 InterRobotParticipant:
   type: local-discovery-server
-  id: 301
+  id: 203
   # Network address of the DS-Server to which the robots connect.
   connection-addresses:
     - guid: "44.53.01.5f.45.50.52.4f.53.49.4d.41"
