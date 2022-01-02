@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:       
         device-id:         
-        - 'discovery-server'        
+        # - 'discovery-server'        
         - 'listener'
         - 'talker'
 
@@ -19,11 +19,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
-    - name: Set Discovery-Server address
-      run: |
-        export MYIPV6=$(sed -r 's/([0-9a-f:]+)\s.*/\1/g' id) 
-        yq e -i '.InterRobotParticipant.connection-addresses[0].addresses[0].ip = strenv(MYIPV6)' ./dds-router-config-listener.yml
-        yq e -i '.InterRobotParticipant.connection-addresses[0].addresses[0].ip = strenv(MYIPV6)' ./dds-router-config-talker.yml
+    # - name: Set Discovery-Server address
+    #   run: |
+    #     export MYIPV6=$(sed -r 's/([0-9a-f:]+)\s.*/\1/g' id) 
+    #     yq e -i '.InterRobotParticipant.connection-addresses[0].addresses[0].ip = strenv(MYIPV6)' ./dds-router-config-listener.yml
+    #     yq e -i '.InterRobotParticipant.connection-addresses[0].addresses[0].ip = strenv(MYIPV6)' ./dds-router-config-talker.yml
 
     - name: Deploy ${{ matrix.device-id }}
       continue-on-error: true
