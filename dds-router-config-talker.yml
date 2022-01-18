@@ -23,7 +23,7 @@ InterRobotParticipant:
   connection-addresses:
     - guid: "44.53.01.5f.45.50.52.4f.53.49.4d.41"
       addresses:
-        - ip: "dds-discovery-server"
+        - domain: "dds-discovery-server"
           port: 11811
           transport: "udp6"
 
