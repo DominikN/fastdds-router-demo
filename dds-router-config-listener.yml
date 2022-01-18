@@ -25,4 +25,4 @@ InterRobotParticipant:
       addresses:
         - domain: "dds-discovery-server"
           port: 11811
-          transport: "udp6"
+          transport: "udp"
