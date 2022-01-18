@@ -11,9 +11,9 @@ jobs:
     strategy:
       matrix:       
         device-id:         
-        # - 'discovery-server'        
-        - 'listener'
-        - 'talker'
+          - 'discovery-server'        
+          - 'listener'
+          - 'talker'
 
     steps:
     - name: Checkout

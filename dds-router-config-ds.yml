@@ -1,0 +1,20 @@
+########################################################
+# Husarion Use Case
+########################################################
+allowlist:
+  - name: "rt/chatter"
+    type: "std_msgs::msg::dds_::String_"
+  
+IntraRobotParticipant:
+  type: local
+  domain: 0
+
+InterRobotParticipant:
+  type: "local-discovery-server"
+  # ros-discovery-server: true
+  # id: 3
+  guid: "44.53.01.5f.45.50.52.4f.53.49.4d.41"
+  # Network address of the DS-Server to which the robots connect.
+  listening-addresses:
+    - ip: "fc94:fc5d:7625:62b:578c:b641:bca:ceb7"
+      port: 11811

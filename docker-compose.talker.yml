@@ -7,14 +7,7 @@ services:
 
   talker:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
-    environment:
-      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-    command:
-      - bash
-      - -c
-      - |
-          source /fastdds_overlay/install/setup.bash
-          ros2 run demo_nodes_cpp talker
+    command: ros2 run demo_nodes_cpp talker
 
   dds-router-talker:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
@@ -25,9 +18,8 @@ services:
       - bash
       - -c
       - |
-          source /fastdds_overlay/install/setup.bash
           /wait_for_discovery_server.sh
-          ddsrouter -c /config.yml
+          ddsrouter -c /config.yml -d
 
   husarnet-talker:
     image: husarnet/husarnet
