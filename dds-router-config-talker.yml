@@ -8,7 +8,7 @@
 allowlist:
   - name: "rt/chatter"
     type: "std_msgs::msg::dds_::String_"
-  
+
   - name: "HelloWorldTopic"
     type: "HelloWorld"
 
@@ -26,7 +26,7 @@ InterRobotParticipant:
   connection-addresses:
     - guid: "44.53.01.5f.45.50.52.4f.53.49.4d.41"
       addresses:
-        - ip: "fc94:f95c:7552:3930:3955:9910:991d:c7c5"
+        - domain: "dds-discovery-server"
           port: 11811
           transport: "udp"
 
