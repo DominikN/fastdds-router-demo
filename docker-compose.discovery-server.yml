@@ -20,11 +20,22 @@ services:
           source /fastdds_overlay/install/setup.bash
           /wait_for_discovery_server.sh
           ros2 run demo_nodes_cpp listener
+  # dds-router-ds:
+  #   image: ghcr.io/dominikn/ros-galactic-fastdds:latest
+  #   network_mode: service:husarnet-ds
+  #   volumes:
+  #     - ./dds-router-config-ds.yml:/config.yml
+  #   command:
+  #     - bash
+  #     - -c
+  #     - |
+  #         /wait_for_discovery_server.sh
+  #         ddsrouter -c /config.yml -d
 
   husarnet-ds:
     image: husarnet/husarnet
     volumes:
-      - ./id:/var/lib/husarnet/id  # This will persist your Husarnet Client keys, thus IP of the container will be stable/the same between (re)boots
+      - /var/lib/husarnet  # This will persist your Husarnet Client keys, thus IP of the container will be stable/the same between (re)boots
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0  # Husarnet is using IPv6 for the internal connections
     cap_add:
