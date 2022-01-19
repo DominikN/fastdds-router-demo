@@ -29,8 +29,7 @@ jobs:
     - name: Check Husarnet status
       run: |
         docker ps
-        docker exec -it husarnet husarnet status
-      shell: bash
+        docker exec husarnet_container husarnet status
 
     - name: Check if the log contains "Hello World" string
       run: if [[ $(grep 'Hello World' output.txt | wc -l) -eq 0 ]]; then exit 1; fi
