@@ -5,24 +5,16 @@ version: '2.3'
 
 services:
 
-  # discovery-server:
-  #   image: ghcr.io/dominikn/ros-galactic-fastdds:latest
-  #   network_mode: service:husarnet-ds
-  #   volumes:
-  #     - ./discovery-server-config.xml:/fastdds_server.xml
-  #   environment:
-  #     - FASTRTPS_DEFAULT_PROFILES_FILE=/fastdds_server.xml
-  #   command:
-  #     - bash
-  #     - -c
-  #     - |
-  #         /wait_for_discovery_server.sh
-  #         ros2 run demo_nodes_cpp listener
+  # not necessary, but just to have a nice log also in ds node
+  listener:
+    image: ghcr.io/dominikn/ros-galactic-fastdds:latest
+    command: ros2 run demo_nodes_cpp listener
+
   dds-router-ds:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
     network_mode: service:husarnet-ds
     volumes:
-      - ./dds-router-config-ds.yml:/config.yml
+      - ./router-config.ds.yml:/config.yml
     command:
       - bash
       - -c
