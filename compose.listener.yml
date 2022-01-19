@@ -1,5 +1,5 @@
 # TL;DR
-# docker-compose -f docker-compose.listener.yml up
+# docker-compose -f compose.listener.yml up
 
 version: '2.3'
 
@@ -25,14 +25,14 @@ services:
     image: husarnet/husarnet
     container_name: husarnet_container
     network_mode: host
-    volumes:
-      - /var/lib/husarnet  # This will persist your Husarnet Client keys, thus IP of the container will be stable/the same between (re)boots
+    # devices:
+    #   - /dev/net/tun
     # sysctls:
     #   - net.ipv6.conf.all.disable_ipv6=0  # Husarnet is using IPv6 for the internal connections
     cap_add:
       - NET_ADMIN
-    # devices:
-    #   - /dev/net/tun
+    volumes:
+      - /var/lib/husarnet  # This will persist your Husarnet Client keys, thus IP of the container will be stable/the same between (re)boots
     environment:
       - HOSTNAME=listener
     env_file:
