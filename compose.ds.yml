@@ -28,12 +28,12 @@ services:
     network_mode: host
     volumes:
       - /var/lib/husarnet  # This will persist your Husarnet Client keys, thus IP of the container will be stable/the same between (re)boots
-    sysctls:
-      - net.ipv6.conf.all.disable_ipv6=0  # Husarnet is using IPv6 for the internal connections
+    # sysctls:
+    #   - net.ipv6.conf.all.disable_ipv6=0  # Husarnet is using IPv6 for the internal connections
     cap_add:
       - NET_ADMIN
-    devices:
-      - /dev/net/tun
+    # devices:
+    #   - /dev/net/tun
     environment:
       - HOSTNAME=dds-discovery-server
     env_file:
