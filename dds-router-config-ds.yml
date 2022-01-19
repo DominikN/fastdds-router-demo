@@ -16,5 +16,6 @@ InterRobotParticipant:
   guid: "44.53.01.5f.45.50.52.4f.53.49.4d.41"
   # Network address of the DS-Server to which the robots connect.
   listening-addresses:
-    - ip: "fc94:fc5d:7625:62b:578c:b641:bca:ceb7"
+    - domain: "dds-discovery-server"
       port: 11811
+      transport: "udp"
