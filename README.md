@@ -1,5 +1,7 @@
 # fastdds-router-demo
 
+[![Test DDS Router](https://github.com/DominikN/fastdds-router-demo/actions/workflows/test.yaml/badge.svg)](https://github.com/DominikN/fastdds-router-demo/actions/workflows/test.yaml)
+
 A demo showing how to use DDS Router and Husarnet to bridge remote ROS 2 docker deployments
 
 ## Quick Start

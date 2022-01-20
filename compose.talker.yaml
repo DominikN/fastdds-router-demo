@@ -1,5 +1,5 @@
 # TL;DR
-# docker-compose -f compose.talker.yml up
+# docker-compose -f compose.talker.yaml up
 
 version: '2.3'
 
@@ -18,8 +18,8 @@ services:
     restart: always
     network_mode: service:husarnet_talker
     volumes:
-      - ./router-config.talker.yml:/config.yml
-    command: ddsrouter -c /config.yml -r 10
+      - ./router-config.talker.yaml:/config.yaml
+    command: ddsrouter -c /config.yaml -r 10
 
   husarnet_talker:
     image: husarnet/husarnet

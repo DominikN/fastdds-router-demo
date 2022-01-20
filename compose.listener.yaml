@@ -1,19 +1,27 @@
 # TL;DR
-# docker-compose -f compose.ds.yml up
+# docker-compose -f compose.listener.yaml up
 
 version: '2.3'
 
 services:
 
-  dds_router_ds:
+  listener_1:
+    image: ghcr.io/dominikn/ros-galactic-fastdds:latest
+    command: ros2 run demo_nodes_cpp listener --ros-args -r chatter:=chatter1
+
+  listener_2:
+    image: ghcr.io/dominikn/ros-galactic-fastdds:latest
+    command: ros2 run demo_nodes_cpp listener --ros-args -r chatter:=chatter2
+
+  dds_router_listener:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
     restart: always
-    network_mode: service:husarnet_ds
+    network_mode: service:husarnet_listener
     volumes:
-      - ./router-config.ds.yml:/config.yml
-    command: ddsrouter -c /config.yml -d -r 10  # [-r 10] - reload config every 10 seconds - so you can change router-config.ds.yaml with a running container
+      - ./router-config.listener.yaml:/config.yaml
+    command: ddsrouter -c /config.yaml -r 10
 
-  husarnet_ds:
+  husarnet_listener:
     image: husarnet/husarnet
     restart: always
     # network_mode: host
@@ -26,13 +34,13 @@ services:
     volumes:
       - /var/lib/husarnet  # This will persist your Husarnet Client keys, thus IP of the container will be stable/the same between (re)boots
     environment:
-      - HOSTNAME=dds-discovery-server
+      - HOSTNAME=listener
     env_file:
       - ./.env  # create .env file in the same folder
 
 # if testing on the same host. Thanks to those lines a new subnet for this compose file is created
 networks:
   default:
-    name: net_ds
+    name: net_listener
     driver: bridge
     
