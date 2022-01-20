@@ -5,10 +5,6 @@ version: '2.3'
 
 services:
 
-  listener:  # not necessary, but just to have a nice log also in ds node
-    image: ghcr.io/dominikn/ros-galactic-fastdds:latest
-    command: ros2 run demo_nodes_cpp listener
-
   dds-router-ds:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
     restart: always

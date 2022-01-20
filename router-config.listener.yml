@@ -9,14 +9,11 @@ allowlist:
   - name: "rt/chatter"
     type: "std_msgs::msg::dds_::String_"
 
-IntraRobotParticipant:
+internal-partipant:
   type: local
   domain: 0
 
-EchoParticipant:
-  type: echo
-
-InterRobotParticipant:
+external-partipant:
   type: local-discovery-server
   id: 202
   
