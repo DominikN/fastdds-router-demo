@@ -8,6 +8,8 @@
 allowlist:
   - name: "rt/chatter1"
     type: "std_msgs::msg::dds_::String_"
+  # - name: "rt/chatter2"
+  #   type: "std_msgs::msg::dds_::String_"
 
 echo_participant:
   type: echo
@@ -20,3 +22,4 @@ external_partipant:
     - domain: "dds-discovery-server"
       port: 11811
       transport: "udp"
+      

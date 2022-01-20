@@ -19,7 +19,7 @@ services:
     network_mode: service:husarnet_listener
     volumes:
       - ./router-config.listener.yml:/config.yml
-    command: ddsrouter -c /config.yml
+    command: ddsrouter -c /config.yml -r 10
 
   husarnet_listener:
     image: husarnet/husarnet
@@ -43,3 +43,4 @@ networks:
   default:
     name: net_listener
     driver: bridge
+    

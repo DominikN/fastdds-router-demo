@@ -25,6 +25,4 @@ external_partipant:
         - domain: "dds-discovery-server"
           port: 11811
           transport: "udp"
-
-
-
+          
