@@ -11,7 +11,7 @@ services:
     network_mode: service:husarnet-ds
     volumes:
       - ./router-config.ds.yml:/config.yml
-    command: ddsrouter -c /config.yml
+    command: ddsrouter -c /config.yml -d
 
   husarnet-ds:
     image: husarnet/husarnet
