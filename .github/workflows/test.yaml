@@ -32,4 +32,4 @@ jobs:
     #     docker exec husarnet_container husarnet status
 
     - name: Check if the log contains "Hello World" string
-      run: if [[ $(grep 'Hello World' output.txt | wc -l) -eq 0 ]] || [[ $(grep 'Topic{rt/chatter;std_msgs::msg::dds_::String_;no_key}' output.txt | wc -l) -eq 0 ]]; then exit 1; fi
+      run: if [[ $(grep 'Hello World' output.txt | wc -l) -eq 0 ]] && [[ $(grep 'Topic{rt/chatter;std_msgs::msg::dds_::String_;no_key}' output.txt | wc -l) -eq 0 ]]; then exit 1; fi
