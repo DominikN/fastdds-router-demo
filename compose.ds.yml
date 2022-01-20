@@ -1,19 +1,19 @@
 # TL;DR
-# docker-compose -f compose.discovery-server.yml up
+# docker-compose -f compose.ds.yml up
 
 version: '2.3'
 
 services:
 
-  dds-router-ds:
+  dds_router_ds:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
     restart: always
-    network_mode: service:husarnet-ds
+    network_mode: service:husarnet_ds
     volumes:
       - ./router-config.ds.yml:/config.yml
-    command: ddsrouter -c /config.yml -d
+    command: ddsrouter -c /config.yml -d -r 10  # [-r 10] - reload config every 10 seconds - so you can change router-config.ds.yaml with a running container
 
-  husarnet-ds:
+  husarnet_ds:
     image: husarnet/husarnet
     restart: always
     # network_mode: host

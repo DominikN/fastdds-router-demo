@@ -5,19 +5,23 @@ version: '2.3'
 
 services:
 
-  listener:
+  listener_1:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
-    command: ros2 run demo_nodes_cpp listener
+    command: ros2 run demo_nodes_cpp listener --ros-args -r chatter:=chatter1
 
-  dds-router-listener:
+  listener_2:
+    image: ghcr.io/dominikn/ros-galactic-fastdds:latest
+    command: ros2 run demo_nodes_cpp listener --ros-args -r chatter:=chatter2
+
+  dds_router_listener:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
     restart: always
-    network_mode: service:husarnet-listener
+    network_mode: service:husarnet_listener
     volumes:
       - ./router-config.listener.yml:/config.yml
     command: ddsrouter -c /config.yml
 
-  husarnet-listener:
+  husarnet_listener:
     image: husarnet/husarnet
     restart: always
     # network_mode: host

@@ -5,19 +5,23 @@ version: '2.3'
 
 services:
 
-  talker:
+  talker_1:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
-    command: ros2 run demo_nodes_cpp talker
+    command: ros2 run demo_nodes_cpp talker --ros-args -r chatter:=chatter1
 
-  dds-router-talker:
+  talker_2:
+    image: ghcr.io/dominikn/ros-galactic-fastdds:latest
+    command: ros2 run demo_nodes_cpp talker --ros-args -r chatter:=chatter2
+
+  dds_router_talker:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
     restart: always
-    network_mode: service:husarnet-talker
+    network_mode: service:husarnet_talker
     volumes:
       - ./router-config.talker.yml:/config.yml
     command: ddsrouter -c /config.yml
 
-  husarnet-talker:
+  husarnet_talker:
     image: husarnet/husarnet
     restart: always
     # network_mode: host
