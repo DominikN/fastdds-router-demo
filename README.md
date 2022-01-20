@@ -22,7 +22,7 @@ You will find your Join Code at **https://app.husarnet.com
 ### Start Discovery-Server and DDS Router
 
 ```bash
-docker-compose -f compose.ds.yml up
+docker-compose -f compose.ds.yaml up
 ```
 
 That Docker Compose deployment starts also a basic `listener` node.
@@ -30,15 +30,15 @@ That Docker Compose deployment starts also a basic `listener` node.
 ### Start Talker and DDS Router
 
 ```bash
-docker-compose -f compose.talker.yml up
+docker-compose -f compose.talker.yaml up
 ```
 
 ### Start Listener and DDS Router
 
 ```bash
-docker-compose -f compose.listener.yml up
+docker-compose -f compose.listener.yaml up
 ```
 
 ## Testing DDS Router config (`yaml` file)
 
-Files `./router-config.*.yml` are attached as volumes to `dds-router` services. The DDS Router runs with a configuration reload every 2 seconds, so updating the provided config "on the fly" should work. [Read more](https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/user_interface.html#reload-topics)
+Files `./router-config.*.yaml` are attached as volumes to `dds-router` services. The DDS Router runs with a configuration reload every 2 seconds, so updating the provided config "on the fly" should work. [Read more](https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/user_interface.html#reload-topics)
