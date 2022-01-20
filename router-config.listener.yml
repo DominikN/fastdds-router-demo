@@ -15,10 +15,10 @@ internal_partipant:
 
 external_partipant:
   type: local-discovery-server
-  id: 202
+  id: 201
   
   connection-addresses:
-    - guid: "44.53.01.5f.45.50.52.4f.53.49.4d.41"
+    - id: 200
       addresses:
         - domain: "dds-discovery-server"
           port: 11811

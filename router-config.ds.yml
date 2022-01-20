@@ -14,8 +14,8 @@ echo_participant:
 
 external_partipant:
   type: "local-discovery-server"
-  guid: "44.53.01.5f.45.50.52.4f.53.49.4d.41"
-  
+  id: 200
+
   listening-addresses:
     - domain: "dds-discovery-server"
       port: 11811
