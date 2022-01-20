@@ -5,31 +5,26 @@ version: '2.3'
 
 services:
 
-  # not necessary, but just to have a nice log also in ds node
-  listener:
+  listener:  # not necessary, but just to have a nice log also in ds node
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
     command: ros2 run demo_nodes_cpp listener
 
   dds-router-ds:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
+    restart: always
     network_mode: service:husarnet-ds
     volumes:
       - ./router-config.ds.yml:/config.yml
-    command:
-      - bash
-      - -c
-      - |
-          /wait_for_discovery_server.sh
-          ddsrouter -c /config.yml -d
+    command: ddsrouter -c /config.yml
 
   husarnet-ds:
     image: husarnet/husarnet
-    container_name: husarnet_container
-    network_mode: host
-    # devices:
-    #   - /dev/net/tun
-    # sysctls:
-    #   - net.ipv6.conf.all.disable_ipv6=0  # Husarnet is using IPv6 for the internal connections
+    restart: always
+    # network_mode: host
+    devices:
+      - /dev/net/tun
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0  # Husarnet is using IPv6 for the internal connections
     cap_add:
       - NET_ADMIN
     volumes:
@@ -38,3 +33,9 @@ services:
       - HOSTNAME=dds-discovery-server
     env_file:
       - ./.env  # create .env file in the same folder
+
+# if testing on the same host. Thanks to those lines a new subnet for this compose file is created
+networks:
+  default:
+    name: net_ds
+    driver: bridge

@@ -11,24 +11,20 @@ services:
 
   dds-router-listener:
     image: ghcr.io/dominikn/ros-galactic-fastdds:latest
+    restart: always
     network_mode: service:husarnet-listener
     volumes:
       - ./router-config.listener.yml:/config.yml
-    command:
-      - bash
-      - -c
-      - |
-          /wait_for_discovery_server.sh
-          ddsrouter -c /config.yml -d
+    command: ddsrouter -c /config.yml
 
   husarnet-listener:
     image: husarnet/husarnet
-    container_name: husarnet_container
-    network_mode: host
-    # devices:
-    #   - /dev/net/tun
-    # sysctls:
-    #   - net.ipv6.conf.all.disable_ipv6=0  # Husarnet is using IPv6 for the internal connections
+    restart: always
+    # network_mode: host
+    devices:
+      - /dev/net/tun
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0  # Husarnet is using IPv6 for the internal connections
     cap_add:
       - NET_ADMIN
     volumes:
@@ -37,3 +33,9 @@ services:
       - HOSTNAME=listener
     env_file:
       - ./.env  # create .env file in the same folder
+
+# if testing on the same host. Thanks to those lines a new subnet for this compose file is created
+networks:
+  default:
+    name: net_listener
+    driver: bridge
