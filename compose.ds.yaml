@@ -1,8 +1,6 @@
 # TL;DR
 # docker-compose -f compose.ds.yaml up
 
-version: '2.3'
-
 services:
 
   dds_router_ds:

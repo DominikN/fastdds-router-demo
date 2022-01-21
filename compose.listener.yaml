@@ -1,8 +1,6 @@
 # TL;DR
 # docker-compose -f compose.listener.yaml up
 
-version: '2.3'
-
 services:
 
   listener_1:
