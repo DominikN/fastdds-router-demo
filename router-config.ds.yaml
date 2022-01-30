@@ -1,15 +1,17 @@
-########################################################
-# Husarion Use Case
-########################################################
+# Configuration for a host running a Fast DDS Discovery Server.
+#
+# 1. It allows service discovery for two other hosts (talker&listener) 
+#    in this demo.
+# 2. Only service discovery phase is centralized. After that, ROS 2 
+#    nodes communicate p2p.
+# 3. You can log messages from a "/chatter" topic using "echo" participant.
+#    It is not required however for communication:
+#    host-talker --> [/chatter1] --> host-listener
+###########################################################################
 
-# List of topics that the DDS Router will forward.
-# Any topic not included in this list will be blocked by the DDS Router.
-# This list can be updated at run time.
 allowlist:
-  - name: "rt/chatter1"
-    type: "std_msgs::msg::dds_::String_"
-  # - name: "rt/chatter2"
-  #   type: "std_msgs::msg::dds_::String_"
+#   - name: "rt/chatter2"
+#     type: "std_msgs::msg::dds_::String_"
 
 echo_participant:
   type: echo

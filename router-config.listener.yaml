@@ -1,10 +1,17 @@
-########################################################
-# Husarion Use Case
-########################################################
+# Configuration for a host running a "listener" ROS 2 node
+#
+# 1. allowlist - List of topics that the DDS Router will forward.
+#    Any topic not included in this list will be blocked by the DDS Router.
+#    This list can be updated at run time
+# 2. external_partipant: - address (Husarnet Hostname) of a host running a
+#    Fast DDS Discovery Server, that is used for a service discovery only.
+#    Message (over "/chatter1" topic)exchange that is done p2p.
+# 3. After you uncomment `"rt/chatter2"` section in allowlist both in 
+#    router-config.listener.yaml & router-config.talker.yaml, then
+#    also "chatter2" messages will be forwarded that are now available
+#    only locally on host running "talker" nodes.
+###########################################################################
 
-# List of topics that the DDS Router will forward.
-# Any topic not included in this list will be blocked by the DDS Router.
-# This list can be updated at run time.
 allowlist:
   - name: "rt/chatter1"
     type: "std_msgs::msg::dds_::String_"
