@@ -1,5 +1,6 @@
 # TL;DR
-# docker-compose -f compose.listener.yaml up
+# Make sure you have Docker Compose v2.x.x. installed and run
+# docker compose -f compose.listener.yaml up
 
 services:
 

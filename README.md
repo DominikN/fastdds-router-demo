@@ -4,6 +4,19 @@
 
 A demo showing how to use DDS Router and Husarnet to bridge remote ROS 2 docker deployments
 
+> **Prerequisites** 
+>
+> I use the [latest compose file spec](https://github.com/compose-spec/compose-spec/blob/master/spec.md) (eg. no `version: "3.7"` on top of. `.yaml` file and usign `compose.yaml` instead of `docker-compose.yml`). For that reason make sure you use [Docker Compose V2](https://docs.docker.com/compose/cli-command/).
+>
+> Tested on the following host:
+>
+> ```bash
+> $ docker --version
+> Docker version 20.10.10, build b485636
+> $ docker compose version
+> Docker Compose version v2.2.3
+> ```
+
 ## Quick Start
 
 ### Get your Husarnet Join Code

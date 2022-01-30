@@ -24,7 +24,7 @@ jobs:
       timeout-minutes: 1
       run: |
         echo JOINCODE=${{ secrets.HUSARNET_JOINCODE }} > .env
-        docker-compose -f compose.${{ matrix.device-id }}.yaml up | tee output.txt
+        docker compose -f compose.${{ matrix.device-id }}.yaml up | tee output.txt
 
     # - name: Check Husarnet status
     #   run: |
