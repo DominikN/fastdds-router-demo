@@ -2,7 +2,7 @@
 #
 # 1. allowlist - List of topics that the DDS Router will forward.
 #    Any topic not included in this list will be blocked by the DDS Router.
-#    This list can be updated at run time
+#    This list can be updated at run time.
 # 2. external_partipant: - address (Husarnet Hostname) of a host running a
 #    Fast DDS Discovery Server, that is used for a service discovery only.
 #    Message (over "/chatter1" topic)exchange that is done p2p.
