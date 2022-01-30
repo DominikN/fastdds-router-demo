@@ -2,11 +2,11 @@
 
 [![Test DDS Router](https://github.com/DominikN/fastdds-router-demo/actions/workflows/test.yaml/badge.svg)](https://github.com/DominikN/fastdds-router-demo/actions/workflows/test.yaml)
 
-A demo showing how to use DDS Router and Husarnet to bridge remote ROS 2 docker deployments
+A demo showing how to use DDS Router and Husarnet to connect remote ROS 2 nodes over the Internet.
 
 > **Prerequisites** 
 >
-> I use the [latest compose file spec](https://github.com/compose-spec/compose-spec/blob/master/spec.md) (eg. no `version: "3.7"` on top of. `.yaml` file and usign `compose.yaml` instead of `docker-compose.yml`). For that reason make sure you use [Docker Compose V2](https://docs.docker.com/compose/cli-command/).
+> I use the [latest compose file spec](https://github.com/compose-spec/compose-spec/blob/master/spec.md) (eg. no `version: "3.7"` on top of. `.yaml` file and using `compose.yaml` instead of `docker-compose.yml`). Make sure you also use [Docker Compose V2](https://docs.docker.com/compose/cli-command/).
 >
 > Tested on the following host:
 >

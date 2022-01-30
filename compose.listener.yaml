@@ -37,7 +37,7 @@ services:
     env_file:
       - ./.env  # create .env file in the same folder
 
-# if testing on the same host. Thanks to those lines a new subnet for this compose file is created
+# Needed if running all compose.*.yaml files on the same host. Thanks to those lines a new subnet for this compose file is created
 networks:
   default:
     name: net_listener
