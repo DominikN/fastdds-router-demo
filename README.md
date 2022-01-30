@@ -32,21 +32,23 @@ You will find your Join Code at **https://app.husarnet.com
 
 …and change the `JOINCODE` variable in the `.env` files.
 
-### Start Discovery-Server and DDS Router
+### Deploy
+
+You can execute those commands on the same, or on different hosts in different LANs.
+
+#### Discovery-Server and DDS Router
 
 ```bash
 docker compose -f compose.ds.yaml up
 ```
 
-That Docker Compose deployment starts also a basic `listener` node.
-
-### Start Talker and DDS Router
+#### Talker and DDS Router
 
 ```bash
 docker compose -f compose.talker.yaml up
 ```
 
-### Start Listener and DDS Router
+#### Listener and DDS Router
 
 ```bash
 docker compose -f compose.listener.yaml up
