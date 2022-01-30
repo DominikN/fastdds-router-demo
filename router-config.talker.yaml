@@ -29,7 +29,7 @@ external_partipant:
   connection-addresses:
     - id: 200
       addresses:
-        - domain: "dds-discovery-server"
+        - domain: "dds-discovery-server" # using hostname instead of Husarnet IPv6 addr
           port: 11811
           transport: "udp"
           
