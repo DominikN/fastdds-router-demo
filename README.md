@@ -6,7 +6,7 @@ A demo showing how to use DDS Router and Husarnet to connect remote ROS 2 nodes 
 
 > **Prerequisites** 
 >
-> I use the [latest compose file spec](https://github.com/compose-spec/compose-spec/blob/master/spec.md) (eg. no `version: "3.7"` on top of. `.yaml` file and using `compose.yaml` instead of `docker-compose.yml`). Make sure you also use [Docker Compose V2](https://docs.docker.com/compose/cli-command/).
+> I use the [latest compose file spec](https://github.com/compose-spec/compose-spec/blob/master/spec.md) (eg. no `version: "3.7"` on top of. `.yaml` file and using `compose.yaml` instead of `docker-compose.yaml`). Therefore make sure you use [Docker Compose V2](https://docs.docker.com/compose/cli-command/).
 >
 > Tested on the following host:
 >
@@ -35,7 +35,7 @@ You will find your Join Code at **https://app.husarnet.com
 ### Start Discovery-Server and DDS Router
 
 ```bash
-docker-compose -f compose.ds.yaml up
+docker compose -f compose.ds.yaml up
 ```
 
 That Docker Compose deployment starts also a basic `listener` node.
@@ -43,15 +43,15 @@ That Docker Compose deployment starts also a basic `listener` node.
 ### Start Talker and DDS Router
 
 ```bash
-docker-compose -f compose.talker.yaml up
+docker compose -f compose.talker.yaml up
 ```
 
 ### Start Listener and DDS Router
 
 ```bash
-docker-compose -f compose.listener.yaml up
+docker compose -f compose.listener.yaml up
 ```
 
 ## Testing DDS Router config (`yaml` file)
 
-Files `./router-config.*.yaml` are attached as volumes to `dds-router` services. The DDS Router runs with a configuration reload every 2 seconds, so updating the provided config "on the fly" should work. [Read more](https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/user_interface.html#reload-topics)
+Files `./router-config.*.yaml` are attached as volumes to `dds-router` services. The DDS Router runs with a configuration reload every 10 seconds, so updating the provided config "on the fly" should work. [Read more](https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/user_interface.html#reload-topics)
