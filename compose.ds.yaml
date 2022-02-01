@@ -10,7 +10,8 @@ services:
     network_mode: service:husarnet_ds
     volumes:
       - ./router-config.ds.yaml:/config.yaml
-    command: ddsrouter -c /config.yaml -d -r 10  # [-r 10] - reload config every 10 seconds - so you can change router-config.ds.yaml with a running container
+    command: bash -c "/wait_for_discovery_server.sh && ddsrouter -c /config.yaml -r 10"
+    # command: ddsrouter -c /config.yaml -r 10    # will work as well, but the Docker Compose log at startup will be ugly while waiting for `dds-discovery-server` host
 
   husarnet_ds:
     image: husarnet/husarnet
