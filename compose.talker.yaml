@@ -5,11 +5,11 @@
 services:
 
   talker_1:
-    image: ghcr.io/dominikn/ros-galactic-fastdds:latest
+    build: .
     command: ros2 run demo_nodes_cpp talker --ros-args -r chatter:=chatter1
 
   talker_2:
-    image: ghcr.io/dominikn/ros-galactic-fastdds:latest
+    build: .
     command: ros2 run demo_nodes_cpp talker --ros-args -r chatter:=chatter2
 
   dds_router_talker:
@@ -35,8 +35,7 @@ services:
       - /var/lib/husarnet  # This will persist your Husarnet Client keys, thus IP of the container will be stable/the same between (re)boots
     environment:
       - HOSTNAME=talker
-    env_file:
-      - ./.env  # create .env file in the same folder
+      - JOINCODE=${JOINCODE}
 
 # Needed if running all compose.*.yaml files on the same host. Thanks to those lines a new subnet for this compose file is created
 networks:

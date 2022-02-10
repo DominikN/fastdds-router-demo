@@ -27,8 +27,7 @@ services:
       - /var/lib/husarnet  # This will persist your Husarnet Client keys, thus IP of the container will be stable/the same between (re)boots
     environment:
       - HOSTNAME=dds-discovery-server
-    env_file:
-      - ./.env  # create .env file in the same folder
+      - JOINCODE=${JOINCODE}
 
 # Needed if running all compose.*.yaml files on the same host. Thanks to those lines a new subnet for this compose file is created
 networks:
