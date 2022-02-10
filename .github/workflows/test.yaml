@@ -21,7 +21,7 @@ jobs:
 
     - name: Deploy ${{ matrix.device-id }}
       continue-on-error: true
-      timeout-minutes: 1
+      timeout-minutes: 2
       run: |
         echo JOINCODE=${{ secrets.HUSARNET_JOINCODE }} > .env
         docker compose -f compose.${{ matrix.device-id }}.yaml up | tee output.txt
